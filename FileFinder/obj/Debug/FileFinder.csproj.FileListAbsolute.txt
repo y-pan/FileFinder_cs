@@ -1,0 +1,9 @@
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\bin\Debug\FileFinder.exe.config
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\bin\Debug\FileFinder.exe
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\bin\Debug\FileFinder.pdb
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.csprojResolveAssemblyReference.cache
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.FileFinder.resources
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.Properties.Resources.resources
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.csproj.GenerateResource.Cache
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.exe
+s:\Documents\C#2017\FileFinder\FileFinder\FileFinder\obj\Debug\FileFinder.pdb
