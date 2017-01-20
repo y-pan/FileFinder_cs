@@ -41,6 +41,7 @@ namespace FileFinder
             seq = 0;
 
             addHeader();
+            addRow();
         }
 
         private void addHeader() {
@@ -116,7 +117,10 @@ namespace FileFinder
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {                        
+        {
+            addRow();
+        }
+        private void addRow() {
             //1
             Label nid = new Label();
             nid.Text = seq.ToString();
@@ -127,23 +131,24 @@ namespace FileFinder
             TextBox ntitle = new TextBox();
             ntitle.Width = w2;
             ntitle.Tag = seq;
-            
+
             //3
             TextBox npath = new TextBox();
             npath.Width = w3;
             npath.Name = "path";
             npath.Tag = seq;
-            npath.KeyDown += getContent;
+            npath.TextChanged += getContent;
             //4
             TextBox nfilter = new TextBox();
             nfilter.Width = w4;
             nfilter.Name = "filter";
             nfilter.Tag = seq;
-            nfilter.KeyDown += filterContent;
+            nfilter.TextChanged += filterContent;
             //5
             ComboBox ncontent = new ComboBox();
             ncontent.Width = w5;
             ncontent.Name = "content";
+            ncontent.DropDownStyle = ComboBoxStyle.DropDownList;
             ncontent.Tag = seq;
             //ncontent.SelectedIndexChanged += cbxContent_SelectedIndexChanged;
             //6
@@ -156,7 +161,7 @@ namespace FileFinder
 
             FlowLayoutPanel nrow = new FlowLayoutPanel();
             nrow.FlowDirection = FlowDirection.LeftToRight;
-            nrow.Width = windowBox.Width;       
+            nrow.Width = windowBox.Width;
             nrow.Tag = seq;
 
             nrow.Controls.Add(nid);
@@ -171,77 +176,100 @@ namespace FileFinder
             nfilterList.Add(nfilter);
             ncontentList.Add(ncontent);
             nrowList.Add(nrow);
-            
+
             windowBox.Controls.Add(nrow);
-            
+
             seq++;
+        
         }
-        private void filterContent(object sender, KeyEventArgs e) {
-            if (e.KeyCode == Keys.Enter)
+        private void filterContent(object sender, EventArgs e) {
+            TextBox trigger = (TextBox)sender;
+            int index = (int)trigger.Tag;
+            String filter = trigger.Text.ToLower();
+            String path = npathList[index].Text;
+
+            string[] files = Directory.GetFileSystemEntries(path);
+            List<string> result = new List<string>();
+            for (int i=0; i<files.Length; i++)
             {
-                TextBox trigger = (TextBox)sender;
-                int index = (int)trigger.Tag;
-                String filter = trigger.Text;
-                MessageBox.Show(ncontentList[index].Items.ToString());
-                foreach (object it in ncontentList[index].Items)
-                {
-                    Console.WriteLine(it.ToString());
-                }
-            }
-        }
-        private void getContent(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter) {
-                TextBox trigger = (TextBox)sender;
+                string _file = files[i].ToLower();
 
-                int index = (int)trigger.Tag;
-                String path = trigger.Text;
-
-                try
+                if (_file.Contains(filter))
                 {
-                    string[] files = Directory.GetFileSystemEntries(path);
-                    ncontentList[index].Items.Clear();
-                    foreach (string f in files)
-                    {
-                        // to filter content ....
-                        ncontentList[index].Items.Add(Path.GetFileName(f));
-                    }
+                    
+                    result.Add(Path.GetFileName(files[i]));
                     
                 }
-                catch (Exception ex)
+            }
+            
+            ncontentList[index].Items.Clear();
+            if (result.Count > 0) {
+                ncontentList[index].Items.AddRange(result.ToArray());
+                ncontentList[index].SelectedIndex = 0;
+            }
+            
+        }
+
+        private void getContent(object sender, EventArgs e)
+        {
+            TextBox trigger = (TextBox)sender;
+            int index = (int)trigger.Tag;
+            String path = trigger.Text;
+            bool isDir = Directory.Exists(path);
+            bool isFile = File.Exists(path);
+            if (isDir)
+            {
+                nfilterList[index].Enabled = true;
+                ncontentList[index].Enabled = true;
+
+                string[] files = Directory.GetFileSystemEntries(path);
+                ncontentList[index].Items.Clear();
+                foreach (string f in files)
                 {
-                    MessageBox.Show(ex.Message);
+                    // to filter content ....
+                    ncontentList[index].Items.Add(Path.GetFileName(f));             
                 }
+                ncontentList[index].SelectedIndex = 0;
+            }
+            else if (isFile) 
+            {
+                nfilterList[index].Enabled = false;
+                ncontentList[index].Enabled = false;
+                                   
+            }
+            else  // not exist
+            {
+                nfilterList[index].Enabled = false;
+                ncontentList[index].Enabled = false;
             }
 
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            try
+            Button trigger = (Button)sender;
+            int index = (int)trigger.Tag;
+            string path;
+            if (ncontentList[index].SelectedIndex < 0)
             {
-                Button trigger = (Button)sender;
-                int index = (int)trigger.Tag;
-                string name = ncontentList[index].SelectedItem.ToString();
-                string prefix = npathList[index].Text;
-                string path = prefix + "\\" + name;
-
-                if (Directory.Exists(path))
-                {
-                    // open 
-                    Process.Start("explorer.exe", path);
-
-                }
-                else if (File.Exists(path))
-                {
-                    // open notepad
-                    Process.Start("notepad++.exe", path);
-
-                }
+                path = npathList[index].Text;
             }
-            catch (Exception ex)
+            else {
+
+                path = npathList[index].Text + "\\" + ncontentList[index].SelectedItem.ToString(); 
+            }
+            
+            if (Directory.Exists(path))
             {
-                MessageBox.Show(ex.Message);
+                // open 
+                Process.Start("explorer.exe", path);
+
+            }
+            else if (File.Exists(path))
+            {
+                // open notepad
+                Process.Start("notepad++.exe", path);
+
             }
 
         }
