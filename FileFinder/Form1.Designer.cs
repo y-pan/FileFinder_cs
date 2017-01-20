@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileFinder));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,35 +41,14 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.windowBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.outerBox = new System.Windows.Forms.FlowLayoutPanel();
             this.headBox1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.windowBox.SuspendLayout();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.outerBox.SuspendLayout();
             this.headBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(17, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAdd.Size = new System.Drawing.Size(40, 40);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "+";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemove.Location = new System.Drawing.Point(63, 3);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnRemove.Size = new System.Drawing.Size(40, 40);
-            this.btnRemove.TabIndex = 3;
-            this.btnRemove.Text = "-";
-            this.btnRemove.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -198,20 +176,24 @@
             this.label7.Text = "1";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // windowBox
+            // outerBox
             // 
-            this.windowBox.AutoSize = true;
-            this.windowBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.windowBox.Controls.Add(this.headBox1);
-            this.windowBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.windowBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.windowBox.Location = new System.Drawing.Point(0, 0);
-            this.windowBox.Name = "windowBox";
-            this.windowBox.Size = new System.Drawing.Size(1002, 712);
-            this.windowBox.TabIndex = 12;
+            this.outerBox.AutoSize = true;
+            this.outerBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.outerBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.outerBox.BackgroundImage = global::FileFinder.Properties.Resources.light_blue_background_1;
+            this.outerBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.outerBox.Controls.Add(this.headBox1);
+            this.outerBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outerBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.outerBox.Location = new System.Drawing.Point(0, 0);
+            this.outerBox.Name = "outerBox";
+            this.outerBox.Size = new System.Drawing.Size(1514, 712);
+            this.outerBox.TabIndex = 12;
             // 
             // headBox1
             // 
+            this.headBox1.BackColor = System.Drawing.Color.Transparent;
             this.headBox1.Controls.Add(this.flowLayoutPanel3);
             this.headBox1.Controls.Add(this.btnAdd);
             this.headBox1.Controls.Add(this.btnRemove);
@@ -227,17 +209,52 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel3.TabIndex = 10;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Location = new System.Drawing.Point(17, 3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAdd.Size = new System.Drawing.Size(40, 40);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "+";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.ForeColor = System.Drawing.Color.Black;
+            this.btnRemove.Location = new System.Drawing.Point(63, 3);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnRemove.Size = new System.Drawing.Size(40, 40);
+            this.btnRemove.TabIndex = 3;
+            this.btnRemove.Text = "-";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // FileFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1002, 712);
-            this.Controls.Add(this.windowBox);
-            this.MaximumSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1514, 712);
+            this.Controls.Add(this.outerBox);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(700, 56);
             this.Name = "FileFinder";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FileFinder";
-            this.windowBox.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.FileFinder_Load);
+            this.ResizeEnd += new System.EventHandler(this.FileFinder_ResizeEnd);
+            this.outerBox.ResumeLayout(false);
             this.headBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -248,7 +265,6 @@
 
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.TableLayoutPanel thistblpRowContainer;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
@@ -261,7 +277,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.FlowLayoutPanel windowBox;
+        private System.Windows.Forms.FlowLayoutPanel outerBox;
         private System.Windows.Forms.FlowLayoutPanel headBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
